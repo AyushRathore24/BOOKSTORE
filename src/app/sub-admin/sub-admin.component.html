@@ -1,0 +1,27 @@
+
+
+<!-- //for addingUp the data -->
+<form class="form"  [formGroup]="userForm"  (ngSubmit)="signup()">
+  <h1 ><U>DEFINING ROLE</U></h1>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email" required>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" formControlName="password" required>
+  </div>
+  <div>
+    <label for="role">Role:</label>
+    <select class="select" formControlName="role" required>
+      <option value="user">User</option>
+      <option value="subadmin">Subadmin</option>
+    </select>
+  </div>
+  <div class="flexible">
+
+    <button class="btn ok" type="submit"       >Update</button>
+    <button class="btn ok" type="button" (click)="gotoback()"  >Cancel</button>
+  </div>
+    
+</form>

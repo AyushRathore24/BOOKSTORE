@@ -1,0 +1,82 @@
+ <app-search  (searchTextChanged)="onSearchTextEntered($event)" *ngIf="tomain"></app-search>
+<table border='1' *ngIf="tomain">
+  <thead>
+    <tr>
+      <!-- <th>Id</th> -->
+      <th>Title</th>
+      <th>Author</th>
+      <th>Published Year</th>
+      <th>Genre</th>
+      <th *ngIf="authService.isAdmin|| authService.isSubAdmin">Action</th>
+      <th *ngIf="authService.isAdmin">Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let book of bookData,let i =index">
+   <tr  *ngIf="searchText === ''|| book.title.toLowerCase().includes(searchText) ">
+        
+ 
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publishedyear }}</td>
+        <td>{{book.genre}}</td>
+        <td *ngIf="authService.isAdmin || authService.isSubAdmin "><button class="btn"  type="button"  (click)="getAllDetails(book)" >Edit</button></td>
+        <td *ngIf="authService.isAdmin"><button class="btn" (click)="deleteBook(book)" >Delete</button></td>
+     
+    </tr>
+  </tbody>
+</table>
+<div class="aside">
+   <h1 *ngIf="authService.isAdmin">Hi Admin!!</h1>
+   <h1 *ngIf="authService.isSubAdmin">Hi SubAdmin!!</h1>
+   <h1 *ngIf="authService.isUser">Hi User!!</h1>
+  <!-- <button class="btn" >Add NewBook </button>  -->
+  <button  type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addbook" *ngIf="(authService.isAdmin || authService.isSubAdmin) && toaddnewbook"(click)="toggle()" data-whatever="@mdo">Add NewBook</button>
+  &nbsp;
+
+
+
+</div> 
+
+
+
+<!-- //for addingUp the data -->
+<form class="form" [formGroup]="bookForm"  *ngIf="toshow"  >
+  <h1 *ngIf="toAdd">Adding New data</h1>
+  <h1  *ngIf="toEdit">Editing the data</h1>
+  Title:<br>
+  <input type="text" formControlName="title"><br>
+  Author:<br>
+  <input type="text" formControlName="author"><br>
+  PublishedYear:<br>
+  <input type="number" formControlName="publishedyear">
+  Genre:<br>
+  <input type="string" formControlName="genre"><br>
+  <div class="flex">
+<button class="btn ok" type="submit"  id="gap"      [disabled]="bookForm.invalid" *ngIf="toAdd" (click)="addBook()">Add Book</button>
+<button class="btn ok" type="button" *ngIf="toEdit" id="gap"  (click)="updateBook()">Update</button>
+<button class="btn ok" type="submit"  id="gap" (click)="toggleforCancel()">Cancel</button>
+  </div>
+</form>
+<!-- 
+
+for editing purpose 
+<form class="form" [formGroup]="editForm"  *ngIf="toEdit" >
+ 
+  <label class="id_none">Id:</label><br>
+ <input type="text" class="id_none" formControlName="edit_id"><br>
+ Title: <br>
+  <input type="text" formControlName="edit_title" [value]="bookDetails?.title">
+  Author: <br>
+  <input type="text" formControlName="edit_author" [value]="bookDetails?.author">
+  PublishedYear: <br>
+  <input type="number" formControlName="edit_publishedyear" [value]="bookDetails?.publishedyear">
+  Genre: <br>
+  <input type="string" formControlName="edit_genre" [value]="bookDetails?.genre" >
+<div class="flex">
+
+  <button class="btn ok" type="button"  id="gap"  (click)="updateBook()">Update</button>
+  <button class="btn ok" type="submit"  id="gap" (click)="toggleforedit()">Cancel</button>
+</div>
+</form>
+
+ -->

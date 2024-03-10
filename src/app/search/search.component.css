@@ -1,0 +1,19 @@
+.search-container{
+    text-align: center;
+    margin:2rem;
+    font-size: 1.7rem;
+    font-weight: large;
+
+}
+input{
+    width:28vw;
+    font-size: 1.6rem;
+    padding:0.5rem;
+    margin:1.4rem;
+    box-shadow: 6px 6px grey;
+    border-radius: 6px;
+}
+span{
+    padding: 0.7rem 1rem;
+    box-shadow:  #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;;
+}

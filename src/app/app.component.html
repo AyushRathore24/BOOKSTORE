@@ -1,0 +1,38 @@
+
+
+<!--  header(navbar)   -->
+<nav class="flex align-center">
+  <p class="main-title"><span>Books</span>&nbsp;ManageMent</p>
+  <ul>
+    <li class="big-screens">
+      <a   class="bigfont" routerLink="home">Home</a>
+      <a  class="bigfont" *ngIf="authService.isLoggedIn" routerLink="books">Books</a>
+      <button class="btn register bigfont"  *ngIf="!authService.isLoggedIn "    routerLink="register">Register</button>
+      <button class="btn register bigfont"  *ngIf="authService.isAdmin"    routerLink="subadmin">Register</button>
+      <button class="btn login bigfont"  *ngIf="!authService.isLoggedIn" routerLink="login">Log In</button>
+      <button class="btn login bigfont"  *ngIf="authService.isLoggedIn" routerLink="login"><a (click)="logout()">Logout</a></button>
+      
+    <li class="small-screens">
+      <i class="fa-solid fa-bars"></i>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>
